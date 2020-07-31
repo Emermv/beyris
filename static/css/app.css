@@ -12,6 +12,25 @@
   format('truetype');
 }
 
+@font-face {
+  font-family: 'PT Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('PT Sans'), local('PTSans-Regular'), url(../fonts/PTSans-Regular.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'PT Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('PT Sans Bold'), local('PTSans-Bold'), url(../fonts/PTSans-Bold.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
 
 .material-icons {
   font-family: 'Material Icons';
@@ -55,28 +74,13 @@
 
 :root,.v-application{
 
-  font-family: 'Roboto',arial;
+  font-family: 'PT Sans','Roboto',arial;
 }
-h1,h2,h3,h5,h6,strong{
-font-family: 'Roboto Condensed',arial;
+
+h1,h2,h3,h5,h4,h6,strong{
+font-family:'Roboto Condensed',arial;
 }
 
 [v-cloak]{
   display: none;
-}
-main{
-  height: 500px;
-}
-#footer{
-  height: 500px;
-}
-
-#footer img{
-  position: absolute;
-    bottom: 0;
-    width:100%;
-    right: 0;
-    left: 0;
-    height: 500px;
-    opacity: .09;
 }

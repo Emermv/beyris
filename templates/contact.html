@@ -1,0 +1,174 @@
+{% extends "app.html" %}
+{%block title%}{{{'APP_TITLE'|get}}} - CONTACTO{%endblock%}
+{%block name%}{{{component}}}{%endblock%}
+{%block component%}
+<template>
+<div>
+<v-snackbar
+      v-model="snackbar"
+      color="success"
+      multi-line
+      top
+    >
+      Muchas gracias por contactarnos.
+
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="pink"
+          text
+          v-bind="attrs"
+          @click="snackbar = false"
+        >
+         Cerrar
+        </v-btn>
+      </template>
+    </v-snackbar>
+  <v-row no-gutters>
+  <v-col cols="12" v-ripple>
+  <v-img src="{{{url_for('static',filename='img/contact.jpg')}}}" height="350" gradient="to top, rgba(5, 11, 31, 0.8), rgba(5, 11, 31, 0.8)" >
+    <v-row class="align-center justify-center fill-height">
+     <v-col cols="12" class="text-center">
+    <h2 class="text-h3 font-weight-500 mb-2 text-center white--text">CONTACTO</h2> 
+     <div style="max-width:50px" class="v-responsive base-divider accent mx-auto mb-1 base-divider--dense">
+     <v-divider  style="border-width:2px"></v-divider>
+     </div>
+     <v-breadcrumbs :items="items2" large  dark class="justify-center ">
+     <template v-slot:item="{ item }">
+      <v-breadcrumbs-item
+        :href="item.href"
+        :disabled="item.disabled"
+    
+      >
+        <span class="white--text">{{ item.text}}</span>
+      </v-breadcrumbs-item>
+    </template>
+     </v-breadcrumbs>
+     </v-col>
+   
+    </v-row>
+  </v-img>
+  </v-col>
+   <v-col cols="12">
+<v-row class="justify-center" dense>
+<v-col cols="12" class="text-center mt-4">
+<h2>¿NECESITAS QUE TE AYUDEMOS?</h2>
+</v-col>
+<v-col cols="11" xs="11" sm="11" md="4" lg="4" xl="3">
+<v-form
+    ref="form"
+    v-model="valid"
+    class="mt-6"
+    lazy-validation
+  >
+    <v-text-field
+      v-model="form.name"
+      
+      :rules="[v=>!!v || 'Ingrese su nombre']"
+      label="Nombre"
+      dense
+      prepend-inner-icon="account_circle"
+      outlined
+    ></v-text-field>
+
+    <v-text-field
+      v-model="form.email"
+      :rules="emailRules"
+      label="Correo"
+      outlined
+      prepend-inner-icon="email"
+      dense
+    ></v-text-field>
+    <v-text-field
+      v-model="form.phone"
+      :rules="[v=>!!v || 'Ingrese su teléfono']"
+      label="Teléfono"
+      outlined
+      prepend-inner-icon="phone"
+      counter
+      dense
+    ></v-text-field>
+   
+      <v-textarea outlined 
+       prepend-inner-icon="comment" v-model="form.message"
+       label="Cuéntanos en que podemos ayudarte" counter clearable>
+      </v-textarea>
+    <v-checkbox
+      v-model="form.accept"
+      :rules="[v => !!v || 'Debes aceptar para continuar!']"
+      label="He leído y acepto la política de privacidad"
+    ></v-checkbox>
+
+    <v-btn
+      :loading="loading"
+      color="accent"
+      @click="send"
+      class="mt-4 mb-4"
+    >
+      ENVIAR
+    </v-btn>
+
+
+  </v-form>
+</v-col>
+<v-col cols="12"></v-col>
+<v-col cols="11" xs="11" sm="11" md="5" lg="5" xl="4" class="text-center mb-10">
+<v-divider></v-divider>
+<p class="mt-4">Si deseas contactar por teléfono con nosotros, llámanos al siguiente número:</p>
+ <v-btn text href="tel:916769147" color="accent" class="text-decoration-none">
+  <h2><v-icon>phone</v-icon> 916769147</h2>
+  </v-btn>
+</v-col>
+</v-row>
+   </v-col>  
+  </v-row>
+</div>
+</template>
+
+<script>
+  module.exports= {
+      inject: ['theme'],
+    data(){
+      return {
+         items2: [
+        {
+          text: 'INICIO',
+          disabled: false,
+          href: '/',
+        },
+        {
+          text: 'CONTACTO',
+          disabled: true,
+          href: '',
+        },
+        
+      ],
+      snackbar:false,
+      valid: true,
+     loading:false,
+   
+      emailRules: [
+        v => !!v || 'Ingrese su correo',
+        v => /.+@.+\..+/.test(v) || 'Su correo no es correcto',
+      ],
+      form:{accept:false},
+      
+    };
+    },
+
+    methods: {
+      send () {
+        if(this.$refs.form.validate()){
+          this.loading=true;
+           $api.post("contact/send",this.form).then(response=>{
+              this.snackbar=true;
+           }).finally(()=>{
+             this.loading=false;
+             this.$refs.form.reset();
+           });
+        }
+      },
+      
+    },
+  }
+</script>
+{%endblock%}
