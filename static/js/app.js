@@ -24,8 +24,19 @@ new Vue({
     data:{
       tab:component.attributes.name.value,
       cart_drawer:false,
-      menu_drawer:false
-     
+      menu_drawer:false,
+      emailRules: [
+        v => !!v || 'Ingrese su email',
+        v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'El email debe ser válido'
+      ],
+      newsletter:'',
+    },
+    methods:{
+      subscribe(){
+        if(this.$refs.newsletter.validate()){
+          
+        }
+      }
     },
     vuetify: new Vuetify({
         icons:{

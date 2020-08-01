@@ -1,3 +1,73 @@
 {% extends "app.html" %}
 {%block title%}{{{'APP_TITLE'|get}}}{%endblock%}
 {%block name%}{{{component}}}{%endblock%}
+{%block component%}
+<template>
+<v-row class="justify-center" no-gutters>
+<v-col cols="12" v-ripple>
+  <v-img src="{{{url_for('static',filename='img/about-banner.jpg')}}}" height="350" gradient="to top, rgba(5, 11, 31, 0.8), rgba(5, 11, 31, 0.8)" >
+    <v-row class="align-center justify-center fill-height">
+     <v-col cols="12" class="text-center">
+    <h2 class="text-h3 font-weight-500 mb-2 text-center white--text">NOSOTROS</h2> 
+     <div class="v-responsive  accent mx-auto mb-1 beyris-divider">
+     <v-divider ></v-divider>
+     </div>
+     <v-breadcrumbs :items="items2" large  dark class="justify-center ">
+     <template v-slot:item="{ item }">
+      <v-breadcrumbs-item
+        :href="item.href"
+        :disabled="item.disabled"
+    
+      >
+        <span class="white--text">{{ item.text}}</span>
+      </v-breadcrumbs-item>
+    </template>
+     </v-breadcrumbs>
+     </v-col>
+   
+    </v-row>
+  </v-img>
+  </v-col>
+  <v-col cols="11" xs="11" sm="11" md="8" lg="8" xl="8" class="mt-6 mb-6">
+  <v-row>
+  <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
+  <h2>NUESTRA MISIÓN</h2>
+   <div class="v-responsive  accent mb-1 beyris-divider">
+     <v-divider ></v-divider>
+     </div>
+     <p>Non ex commodo culpa laboris labore ut mollit proident amet. In pariatur sunt fugiat ea. Quis esse do in et nulla dolor eiusmod officia nulla. Ea mollit ea officia eiusmod amet cupidatat eiusmod magna labore reprehenderit.</p>
+       <h2>NUESTRA VISIÓN</h2>
+   <div class="v-responsive  accent mb-1 beyris-divider">
+     <v-divider ></v-divider>
+     </div>
+     <p>Deserunt dolore qui tempor aute nulla laboris sint Lorem elit fugiat consequat. Ad sit do et in occaecat aute labore duis veniam nostrud voluptate eu. Occaecat voluptate occaecat esse culpa Lorem in. Consectetur Lorem amet commodo elit et nostrud aliqua. Officia commodo ex proident aute. Nulla ipsum amet dolor ullamco. Labore est qui enim proident labore aliquip quis.</p>
+  </v-col>
+   <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6" class="hidden-sm-and-down">
+     <v-img src="{{{url_for('static',filename='img/about-us.jpg')}}}"></v-img>
+  </v-col>
+  </v-row>
+  </v-col>
+</v-row>
+</template>
+<script>
+module.exports={
+data(){
+    return {
+         items2: [
+        {
+          text: 'INICIO',
+          disabled: false,
+          href: '/',
+        },
+        {
+          text: 'NOSOTROS',
+          disabled: true,
+          href: '',
+        },
+        
+      ],
+    }
+}
+}
+</script>
+{%endblock%}

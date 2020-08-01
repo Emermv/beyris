@@ -84,3 +84,9 @@ font-family:'Roboto Condensed',arial;
 [v-cloak]{
   display: none;
 }
+.beyris-divider{
+  max-width:50px;
+}
+.beyris-divider hr{
+  border-width:2px;
+}
