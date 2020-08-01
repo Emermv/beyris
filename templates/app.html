@@ -64,11 +64,21 @@
     </v-navigation-drawer>
     <v-bottom-sheet v-model="menu_drawer">
     
-      <v-list>
+      <v-list class="toolbar" dark>
+      <v-list-item class="d-flex justify-center">
+       
+          <a href="/" class="text-decoration-none">
+          <div class="d-flex align-center">
+             <v-img src="{{{url_for('static',filename='img/logo.png')}}}" contain  width="48"></v-img>
+           <h1 class="accent--text "> EYRISFOOD</h1>
+          </div>
+          </a>
+       
+      </v-list-item>
       {% for m in modules%}
       
         <v-list-item
- 
+           href="{{{m.url}}}"
           @click="menu_drawer = false"
         >
           <v-list-item-avatar>
@@ -84,7 +94,14 @@
         <v-app-bar   flat color="secondary" dark v-ripple>
          <v-app-bar-nav-icon class="hidden-md-and-up" @click="menu_drawer=true"></v-app-bar-nav-icon>
 
-          <v-toolbar-title>{{{'APP_TITLE'|get}}}</v-toolbar-title>
+          <v-toolbar-title class="hidden-sm-and-down">
+          <a href="/" class="text-decoration-none">
+          <div class="d-flex align-center">
+             <v-img src="{{{url_for('static',filename='img/logo.png')}}}" contain  width="48"></v-img>
+           <h1 class="accent--text "> EYRISFOOD</h1>
+          </div>
+          </a>
+            </v-toolbar-title>
 
           <v-spacer></v-spacer>
           <v-btn icon @click="$vuetify.theme.dark=!$vuetify.theme.dark"><v-icon>settings_brightness</v-icon></v-btn>
@@ -136,7 +153,7 @@
          <v-row class="justify-center" no-gutters>
 
          <v-col cols="11" sm="11" md="8" lg="8" xl="6" >
-         <h2 class="mt-2">SUSCRIBETE</h2>
+         <h2 class="mt-2 accent--text">SUSCRIBETE</h2>
          <v-form ref="newsletter" class="mt-3">
             <v-row dense class="justify-center">
              
@@ -153,14 +170,20 @@
           <v-col cols="11" sm="11" md="10" lg="10" xl="8">
          <v-row v-ripple class="align-center">
           <v-col cols="12" xs="12" sm="12" md="4" lg="4" xl="4"  >
-          <h4>{{{'APP_TITLE'|get}}}</h4>
+         
+           <div class="d-flex justify-center mb-2" style="height: 48px;">
+            <v-img src="{{{url_for('static',filename='img/logo.png')}}}" contain  width="48" >
+            </v-img>
+
+           </div>
+  
           <p>No hay mejor momento que el almuerzo y disfrutar de un rico menú Beyris,
            pídelo en el lugar que tú desees, simplemente <a href="tel:016058296" >
            llámanos</a> y gustosamente te atenderemos.
            </p>
           </v-col>
           <v-col cols="12" xs="12" sm="12" md="4" lg="4" xl="4"  >
-           <h4>HORARIO DE ATENCIÓN</h4>
+           <v-icon class="accent--text" size="55">watch_later</v-icon>
           <p class="mt-4">Lunes - Viernes: 8am - 10pm <br>
           Sábados - Domingos: 8am - 4pm</p>
           </v-col>
