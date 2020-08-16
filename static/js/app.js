@@ -12,7 +12,6 @@ if(script){
      console.error(ex);
    }
 }
-
 if(!m.exports){
   m.exports={};
 }
